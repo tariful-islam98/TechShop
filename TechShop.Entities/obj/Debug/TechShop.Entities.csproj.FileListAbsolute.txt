@@ -1,0 +1,11 @@
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\bin\Debug\TechShop.Entities.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\bin\Debug\TechShop.Entities.pdb
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.csprojAssemblyReference.cache
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.pdb
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\bin\Debug\TechShop.Entities.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\bin\Debug\TechShop.Entities.pdb
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.csprojAssemblyReference.cache
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.csproj.CoreCompileInputs.cache
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Entities\obj\Debug\TechShop.Entities.pdb

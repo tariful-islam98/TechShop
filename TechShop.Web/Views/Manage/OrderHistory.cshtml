@@ -1,0 +1,83 @@
+﻿@model OrdersViewModel
+
+@{ ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<section class="flat-row flat-iconbox">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section">
+                    <h2 class="title">
+                        Orders
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div id="tableContiner">
+            <div>
+                <a href="@Url.Action("UserProfile", "Manage")" class="btn btn-outline-info" style="color:darkred">Back to Profile</a>
+                <hr />
+                <table id="OrdersTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold">Customer Email</th>
+                            <th class="font-weight-bold">Total Price</th>
+                            <th class="font-weight-bold">Payment Method</th>
+                            <th class="font-weight-bold">Payment ID</th>
+                            <th class="font-weight-bold">Time</th>
+                            <th class="font-weight-bold">Status</th>
+                            <th class="font-weight-bold wrap-td">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Orders != null && Model.Orders.Count > 0)
+                        {
+
+                            foreach (var order in Model.Orders)
+                            {
+            <tr>
+                <td>@order.UserEmail</td>
+                <td>
+                    @order.TotalAmount
+                </td>
+                <td>
+                    @order.PaymentMethod
+                </td>
+                <td>
+                    @order.PaymentID
+                </td>
+                <td>
+                    @order.OrderedAt
+                </td>
+                <td>@order.Status</td>
+                <td class="wrap-td">
+                    <a class="detailBtn" data-id="@order.ID" href="@Url.Action("Details", "Manage", new { ID = order.ID })">Details</a>
+                </td>
+            </tr>
+ }
+    }
+    else
+    {
+            <tr>
+                <td class="text-danger" colspan="4">No Order found.</td>
+            </tr>
+}
+                    </tbody>
+                </table>
+                <br />
+            </div>
+        </div>
+        <hr />
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $("#OrdersTable").DataTable({
+            "responsive": true, "lengthChange": true, "autoWidth": false,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#OrdersTable_wrapper .col-md-6:eq(0)');
+    });
+</script>

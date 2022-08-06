@@ -1,0 +1,121 @@
+﻿@model OrderDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model != null && Model.Order != null)
+{
+    var i = 1;
+    <section class="flat-row main-shop shop-slidebar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    @*<div class="title-section">
+                            <h2 class="title">
+                                Invoice
+                            </h2>
+                        </div>*@
+                    <a href="@Url.Action("OrderHistory", "Manage")" class="btn btn-outline-info" style="color:darkred">View Order History</a>
+                    @using (Html.BeginForm("Export", "Manage", FormMethod.Post))
+                    {
+                        <input type="hidden" name="ExportData" />
+                        <input type="submit" id="btnSubmit" value="Export Invoice" style="float:right;" />
+                    }
+                    <br />
+                    <hr />
+
+                    @*<button id="inv" class="btn btn-outline-danger">Download Invoice</button>*@
+                </div>
+            </div>
+            <div id="invoice" class="container-fluid invoice-container" style="background-color:lavender;">
+                <table class="table" cellpadding="5" cellspacing="0" style="border: 1px solid #ccc; width: 100%">
+                    <tr height="50px">
+                        <td colspan="2" style="text-align:left; font-size:25px;"><b>TShop</b></td>
+                        <td colspan="2" style="text-align:right; font-size:20px;"><b>Invoice</b></td>
+                    </tr>
+                    <tr height="50px">
+                        <td colspan="4" style="border: 1px solid #ccc;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left; border: 1px solid #ccc;"><b>Date: </b>@Model.Order.OrderedAt.ToString("dd/MM/yyyy")</td>
+                        <td colspan="2" style="text-align:right; border: 1px solid #ccc;"><b>Order No: </b>@Model.Order.ID</td>
+                    </tr>
+                    <tr height="50px">
+                        <td colspan="4" style="border: 1px solid #ccc;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left; border: 1px solid #ccc;"><b>Customer:</b></td>
+                        <td colspan="2" style="text-align:right; border: 1px solid #ccc;"><b>Shop:</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left; border: 1px solid #ccc;">@Model.OrderBy.Name</td>
+                        <td colspan="2" style="text-align:right; border: 1px solid #ccc;">TShop</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left; border: 1px solid #ccc;">@Model.OrderBy.Address</td>
+                        <td colspan="2" style="text-align:right; border: 1px solid #ccc;">Dhaka</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left; border: 1px solid #ccc;">@Model.OrderBy.Email</td>
+                        <td colspan="2" style="text-align:right; border: 1px solid #ccc;">contact@tshop.com</td>
+                    </tr>
+                    <tr height="50px">
+                        <td colspan="4" style="border: 1px solid #ccc;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left; border: 1px solid #ccc;"><b>Payment Method: </b>@Model.Order.PaymentMethod</td>
+                        <td colspan="2" style="text-align:right; border: 1px solid #ccc;"><b>Payment ID: </b>@Model.Order.PaymentID</td>
+                    </tr>
+                    <tr height="50px">
+                        <td colspan="4" style="border: 1px solid #ccc;"></td>
+                    </tr>
+                    <tr style="background-color: #B8DBFD;">
+                        <td style="border: 1px solid #ccc;"><b>Products</b></td>
+                        <td style="border: 1px solid #ccc;"><b>Rate</b></td>
+                        <td style="border: 1px solid #ccc;"><b>Quantity</b></td>
+                        <td style="border: 1px solid #ccc;"><b>Amount (BDT)</b></td>
+                    </tr>
+
+                    @foreach (var item in Model.Order.OrderItems)
+                    {
+                        <tr>
+                            <td style="border: 1px solid #ccc;">@i. @item.Product.Name</td>
+                            <td style="border: 1px solid #ccc;">@item.Product.Price</td>
+                            <td style="border: 1px solid #ccc;">@item.Quantity</td>
+                            <td style="border: 1px solid #ccc;">@(item.Quantity * item.Product.Price)</td>
+                        </tr>
+                        i++;
+                    }
+                    <tr>
+                        <td colspan="3" style="text-align:right; border: 1px solid #ccc;"><b>Total:</b></td>
+                        <td style="border: 1px solid #ccc;">@Model.Order.TotalAmount</td>
+                    </tr>
+                    <tr height="50px">
+                        <td colspan="4" style="border: 1px solid #ccc;"></td>
+                    </tr>
+                </table>
+                <!-- Footer -->
+                <footer class="text-center mt-4">
+                    <p class="text-1"><strong>NOTE :</strong> This is computer generated receipt and does not require physical signature.</p>
+                </footer>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='ExportData']").val($("#invoice").html());
+            });
+        });
+    </script>
+}
+else
+{
+    <div>
+        <b>Order Details not availble</b>
+    </div>
+}

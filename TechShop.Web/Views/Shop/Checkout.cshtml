@@ -1,0 +1,225 @@
+﻿@model CheckoutViewModel
+@*@using TechShop.Entities.Services*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+<div>
+    @if (Model != null && Model.CartProducts != null && Model.CartProducts.Count > 0)
+    {
+        var i = 1;
+        bool isInStock = true;
+        <section class="flat-row main-shop shop-slidebar">
+            <div class="container">
+                <a href="@Url.Action("Index", "Shop")" class="btn btn-outline-danger">Get More Products</a>
+                <br />
+                <hr />
+                <div class="row">
+                    <div class="col-md-6 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Your cart</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            @foreach (var product in Model.CartProducts)
+                            {
+                                var productQuantity = Model.CartProductIDs.Where(productID => productID == product.ID).Count();
+                                var productStock = ProductServices.Instance.GetProduct(product.ID);
+                                isInStock = productStock.Quantity - productQuantity >= 0 ? true : false;
+
+                                <li class="list-group-item d-flex justify-content-between lh-condensed" data-id="@product.ID">
+                                    <table class="table table-bordered table-striped">
+                                        <tr>
+                                            <td>
+                                                <b>@i . @product.Name</b> <br />
+                                                @*<small>@(product.Description.Length > 100 ? product.Description.Substring(0, 99) : product.Description)</small>*@
+                                            </td>
+                                            <td>
+                                                <b>Quantity</b><br />
+                                                <small>@productQuantity</small>
+                                                @if (isInStock == false)
+                                                {
+                                                    <br /><small style="color:red;">*Quantity Exceeds the Sock - Available: @productStock.Quantity</small>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <b>Unit Price</b><br />
+                                                <small>@product.Price</small>
+                                            </td>
+
+                                            <td>
+                                                <b>Total Price</b><br />
+                                                <small>@(productQuantity * product.Price)</small>
+                                            </td>
+
+                                            <td><a class="decreaseQty" data-id="@product.ID"><i class="fa fa-close"></i></a></td>
+                                        </tr>
+                                    </table>
+                                    @*<div>
+                                            <div class="row"><h6 class="my-0">@i . @product.Name </h6>  <h6>Quantity: @productQuantity</h6> <a class="decreaseQty" data-id="@product.ID"><i class="fa fa-close"></i></a> </div>
+                                            <small class="text-muted">@(product.Description.Length > 100 ? product.Description.Substring(0, 99) : product.Description)</small>
+                                        </div>
+                                        <span class="text-muted">Unit Price: BDT @product.Price    Total Price: @(productQuantity * product.Price)</span>*@
+                                </li>
+
+                                i++;
+                            }
+
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (BDT)</span>
+                                <strong>BDT @Model.CartProducts.Sum(x => x.Price * Model.CartProductIDs.Where(productID => productID == x.ID).Count())</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <h4 class="mb-3">Billing address</h4>
+                        <form class="needs-validation" novalidate="">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="firstName">Name</label>
+                                    <input type="text" class="form-control" id="Name" placeholder="" value="@Model.User.Name" required="">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="Email" placeholder="you@example.com" value="@Model.User.Email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.User.Address">
+                            </div>
+                            <div class="mb-3">
+                                <label for="PaymentMethod">Payment Methods</label>
+                                <div class="input-group">
+                                    <div class="radio form-control">
+                                        <label><input name="PaymentMethod" type="radio" value="Cash on Delivery" id="cashBtn" checked /> Cash on Delivery</label>
+                                    </div>
+                                    <div class="radio form-control">
+                                        <label><input name="PaymentMethod" type="radio" value="bKash" id="paymentBtn" /> bKash</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="bKashPayment">
+
+                            </div>
+                            @if (isInStock != false)
+                            {
+                                <hr class="mb-4">
+                                <button id="placeOrderBtn" class="btn btn-primary btn-lg btn-block" type="button">Place Order!</button>
+                            }
+                            else
+                            {
+                                <hr class="md-4" />
+                                <button class="btn btn-outline-danger" disabled>Some values are not valid</button>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.container -->
+        </section>
+
+
+        <script>
+            $("#placeOrderBtn").click(function () {
+                var paymentMethod = $("input[name='PaymentMethod']:checked").val();
+                $.ajax({
+                    url: '@Url.Action("PlaceOrder", "Shop")',
+                    data: {
+                        productIDs: '@string.Join("-", Model.CartProductIDs)',
+                        paymentId: '@Model.PaymentID',
+                        paymentMethod: paymentMethod
+                    }
+                })
+                    .done(function (response) {
+                        if (response.Success)
+                        {
+                            $.cookie('CartProducts', '', { path: '/' });
+                            updateCartProducts();
+                            //var Id = 0;
+
+                            swal("Done", "Your Order has been placed.", "success").then((value) => {
+                                window.location = '@Url.Action("Details", "Manage", new { ID = ShopService.Instance.LatestOrderId()+1 })';
+                            });
+                        }
+                        else {
+                            swal("Failed", "Unable to place order.", "warning");
+                        }
+                    })
+                    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("FAIL");
+                    });
+            });
+
+            var products = [];
+            //var rmv = [];
+            $(".decreaseQty").click(function () {
+                var existingCookieData = $.cookie('CartProducts');
+
+                if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) {
+                    products = existingCookieData.split('-');
+                }
+                else {
+                    products = [];
+                }
+
+                var productID = $(this).attr('data-id');
+                if (jQuery.inArray(productID, products) != -1) {
+                    //rmv = jQuery.grep(products, function (value) {
+                    //    return value === productID;
+                    //});
+                    //rmv = jQuery.inArray(productID, products);
+                    //rmv.splice(rmv.indexOf(productID), 1);
+                    products.splice(products.indexOf(productID), 1);
+                }
+
+                var date = new Date();
+                var minutes = 30;
+                date.setTime(date.getTime() + (minutes * 60 * 1000));
+                $.cookie('CartProducts', products.join('-'), { expires: date, path: '/' });
+
+                updateCartProducts();
+
+                swal("Done", "Product Remove from Cart!", "success").then((value) => {
+                    window.location = '@Url.Action("Checkout", "Shop")';
+                });
+            });
+
+            //bkash payment method
+            $("#paymentBtn").click(function () {
+                debugger;
+                $.ajax({
+                    url: '@Url.Action("Payment", "Shop")',
+                    success: function (response) {
+                        $("#bKashPayment").show();
+                        $("#bKashPayment").html(response);
+                    },
+                    error: function () {
+                        alert("Failed!")
+                    }
+                });
+            });
+            //cash on delivery payment method
+            $("#cashBtn").click(function () {
+                debugger;
+                $("#bKashPayment").hide();
+            });
+
+            function focusAction(controlToFocus) {
+                $('html, body').animate({
+                    scrollTop: $("#" + controlToFocus).offset().top - 100
+                }, 1000);
+            }
+        </script>
+    }
+    else
+    {
+        <div>
+            <b>No Products in Cart.</b>
+        </div>
+    }
+</div>

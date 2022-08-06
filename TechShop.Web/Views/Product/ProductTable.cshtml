@@ -1,0 +1,177 @@
+﻿@model ProductSearchViewModel
+@{
+    ViewBag.Title = "ProductTable";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+
+
+<br />
+
+<div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            Categories
+            <button class="btn btn-primary" type="button" id="newBtn" style="float: right;">Add New Products</button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="productTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold">Product Name</th>
+                            <th class="font-weight-bold">Category</th>
+                            <th class="font-weight-bold">Price</th>
+                            <th class="font-weight-bold">Available Quantity</th>
+                            <th class="font-weight-bold wrap-td">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Products != null && Model.Products.Count > 0)
+                        {
+
+                            foreach (var product in Model.Products)
+                            {
+                                <tr>
+                                    <td>@product.Name</td>
+                                    <td>
+                                        @if (product.Category != null)
+                                        {
+                                            <text>@product.Category.Name</text>
+                                        }
+                                        else
+                                        {
+                                            <text>-</text>
+                                        }
+                                    </td>
+                                    <td>@product.Price</td>
+                                    <td>@product.Quantity</td>
+                                    <td class="wrap-td">
+                                        <button class="editBtn" data-id="@product.ID">Edit</button>
+                                        <button class="deleteBtn" data-id="@product.ID">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-danger" colspan="4">No Products found.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/Content/plugins/jquery/jquery.min.js"></script>*@
+<!-- Bootstrap 4 -->
+@*<script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+
+
+<script>
+  $(function () {
+    $("#productTable").DataTable({
+      "responsive": true, "lengthChange": true, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#productTable_wrapper .col-md-6:eq(0)');	  
+  });
+
+	$("#newBtn").click(function () {
+		$.ajax({
+			url: '@Url.Action("Create", "Product")',
+		})
+        .done(function (response) {
+        	$("#actionContainer").html(response);
+
+        	focusAction("actionContainer");
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+	});
+
+	$(".editBtn").click(function () {
+		$.ajax({
+			url: '@Url.Action("Edit", "Product")',
+			data: {
+				ID: $(this).attr('data-id')
+			}
+		})
+        .done(function (response) {
+        	$("#actionContainer").html(response);
+
+        	focusAction("actionContainer");
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+	});
+
+	$(".deleteBtn").click(function () {
+
+		swal({
+			title: "Confirm?",
+			text: "Are you sure you want to delete this product?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.ajax({
+					type: 'POST',
+					url: '@Url.Action("Delete", "Product")',
+					data: {
+						ID: $(this).attr('data-id')
+					}
+				})
+				.done(function (response) {
+					$("#tableContiner").html(response);
+
+					swal("Record deleted Successfully.", {
+						icon: "success",
+					});
+				})
+				.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+					alert("FAIL");
+				});
+
+			}
+		});
+
+		//var confirmDelete = confirm("Are you sure you want to delete this product?");
+
+		//if (confirmDelete)
+		//{
+		//	$.ajax({
+		//		type: 'POST',
+		//		url: '/Product/Delete',
+		//		data: {
+		//			ID: $(this).attr('data-id')
+		//		}
+		//	})
+		//	.done(function (response) {
+		//		$("#tableContiner").html(response);
+		//	})
+		//	.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+		//		alert("FAIL");
+		//	});
+		//}
+	});
+
+	//var products = [];
+	//$(".addtoCart").click(function () {
+	//	var productID = $(this).attr('data-id');
+
+	//	products.push(productID);
+
+	//	$.cookie('CartProducts', products.join('-'), { path: '/' });
+
+	//	alert("Product added to Cart.");
+	//});
+</script>

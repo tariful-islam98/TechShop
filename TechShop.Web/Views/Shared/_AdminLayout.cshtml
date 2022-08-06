@@ -1,0 +1,208 @@
+﻿@using TechShop.Web.Controllers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+    <link href="~/Content/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link href="~/Content/dist/css/adminlte.min.css" rel="stylesheet" />
+
+    <!-- DataTables -->
+    <link href="~/Content/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+
+    <link href="~/Content/dist/css/adminlte.css" rel="stylesheet" />
+    <script src="~/Content/plugins/jquery/jquery.js"></script>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+
+
+    <script src="~/Content/javascript/jquery.min.js"></script>
+    <script src="~/Content/javascript/jquery-ui.js"></script>
+
+    <!-- Favicon and touch icons  -->
+    <link href="~/Content/icon/favicon.png" rel="shortcut icon">
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="~/Content/icon/favicon.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">TShop</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">Alexander Pierce</a>
+                        </div>
+                    </div>*@
+
+                <!-- SidebarSearch Form -->
+                @*<div class="form-inline">
+                        <div class="input-group" data-widget="sidebar-search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-sidebar">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                             with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Dashboard", "Admin")" class="nav-link">
+                                        <i class="nav-icon far fa-circle"></i>
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Category")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Categories</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Product")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Order")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <main>
+                @RenderBody()
+            </main>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            @{
+                var adminId = AdminController.adminId;
+                var admin = AdminAccountServices.Instance.GetAccount(adminId);
+            }
+            <div class="p-3">
+                <h5>Admin</h5>
+                <a href="@Url.Action("AdminAccount", "Admin")">@admin.Name</a>
+                <a href="@Url.Action("AdminLogout", "Admin")"><i class="far fa-sign-out-alt nav-icon"></i> Logout</a>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            @*<div class="float-right d-none d-sm-inline">
+                    Anything you want
+                </div>*@
+            <!-- Default to the left -->
+            <strong>&copy; @DateTime.Now.Year - TechShop.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    @*<div>
+            @RenderBody()
+        </div>*@
+
+
+    <!-- jQuery -->
+    @*<script src="~/Content/plugins/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap 4 -->
+    @*<script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+    <!-- DataTables  & Plugins -->
+    <script src="~/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Content/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/plugins/jszip/jszip.min.js"></script>
+    <script src="~/Content/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/Content/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/Content/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Content/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Content/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- jQuery -->
+    @*<script src="../../plugins/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/Content/dist/js/demo.js"></script>*@
+
+    <script src="~/Content/javascript/jquery-ui.js"></script>
+    <script src="~/Content/javascript/jquery.flexslider-min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/Content/dist/js/demo.js"></script>*@
+
+
+    @*<script src="https://lipis.github.io/bootstrap-sweetalert/lib/sweet-alert.js"></script>*@
+    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+</body>
+</html>

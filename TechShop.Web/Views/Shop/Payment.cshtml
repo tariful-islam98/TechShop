@@ -1,0 +1,16 @@
+﻿@model PaymentMethodViewModel
+
+<div class="md-3">
+    <h4 style="font-size: 22px;">
+        Payment with 
+        <img src="~/Content/images/shop/BKash-bKash-Logo.wine.png" height="75px;" width="75px;" />
+    </h4>
+    <ol style="font-size: 20px;">
+        <li>Login to bKash app and go to <b style="color: red;">Make Payment</b>.</li>
+        <li>Enter the Merchant bKash Account Number- <b style="color: red;">01---------</b>.</li>
+        <li>Enter<b style="color: red;">Amount</b>.</li>
+        <li>Enter your Payment ID: <b style="color: red;">@Model.PaymentID</b> in the <b style="color: red;">Reference field</b>.</li>
+        <li>Enter your <b style="color: red;">pin</b>.</li>
+        <li>Check the informations and then tap and hold to make payment.</li>
+    </ol>
+</div>

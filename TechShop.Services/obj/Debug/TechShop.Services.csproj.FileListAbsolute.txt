@@ -1,0 +1,50 @@
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Services.dll.config
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Services.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Services.pdb
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.SqlServer.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Database.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Entities.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Database.pdb
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Database.dll.config
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Entities.pdb
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.xml
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.SqlServer.xml
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csprojAssemblyReference.cache
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csproj.CopyComplete
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.dll
+E:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.pdb
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Services.dll.config
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Services.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Services.pdb
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.SqlServer.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Database.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Entities.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Database.pdb
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Database.dll.config
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\TechShop.Entities.pdb
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.xml
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\bin\Debug\EntityFramework.SqlServer.xml
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csprojAssemblyReference.cache
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csproj.CoreCompileInputs.cache
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csproj.CopyComplete
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.dll
+G:\Visual Projects\Ecommerce\TechShop\TechShop.Services\obj\Debug\TechShop.Services.pdb
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Services.dll.config
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Services.dll
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Services.pdb
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\EntityFramework.dll
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\EntityFramework.SqlServer.dll
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Database.dll
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Entities.dll
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Database.pdb
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Database.dll.config
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\TechShop.Entities.pdb
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\EntityFramework.xml
+F:\Asp.net\TechShop\TechShop.Services\bin\Debug\EntityFramework.SqlServer.xml
+F:\Asp.net\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csproj.AssemblyReference.cache
+F:\Asp.net\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csproj.CoreCompileInputs.cache
+F:\Asp.net\TechShop\TechShop.Services\obj\Debug\TechShop.Services.csproj.CopyComplete
+F:\Asp.net\TechShop\TechShop.Services\obj\Debug\TechShop.Services.dll
+F:\Asp.net\TechShop\TechShop.Services\obj\Debug\TechShop.Services.pdb

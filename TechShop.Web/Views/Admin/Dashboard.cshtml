@@ -1,0 +1,142 @@
+﻿@model DashboardViewModels
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <h3 class="mt-4 mb-4">Dashboard</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Widget: user widget style 1 -->
+                <div class="card card-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-info">
+                        <h3 class="widget-user-username">Orders</h3>
+                        <h5 class="widget-user-desc">This Month</h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.OrderCountMonth</h5>
+                                    <span class="description-text">Total Orders</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.PendingOrderMonth</h5>
+                                    <span class="description-text">Pending</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.PaymentRecievedMonth</h5>
+                                    <span class="description-text">Payment Recieved <br /></span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 ">
+                <!-- Widget: user widget style 1 -->
+                <div class="card card-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-success">
+                        <h3 class="widget-user-username">Orders</h3>
+                        <h5 class="widget-user-desc">All time</h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.OrderCountTotal</h5>
+                                    <span class="description-text">Total Orders</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.PendingOrderTotal</h5>
+                                    <span class="description-text">Pending</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.PaymentRecievedTotal</h5>
+                                    <span class="description-text">Payment Recieved <br /></span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4">
+                <!-- Widget: user widget style 1 -->
+                <div class="card card-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-warning">
+                        <h3 class="widget-user-username">Producs</h3>
+                        <h5 class="widget-user-desc">All</h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.TotalProducts</h5>
+                                    <span class="description-text">Total Products</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">@Model.OutOfStock</h5>
+                                    <span class="description-text">Out of Stock</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-5">
+                                <div class="description-block">
+                                    <h5 class="description-header">BDT @Model.TotalPayment</h5>
+                                    <span class="description-text">Total Amount Recieved</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+<a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+</a>
